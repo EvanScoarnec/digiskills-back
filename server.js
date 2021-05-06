@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 const app = express();
-app.use(...);
+//app.use(...);
 
 const db = require("./app/models");
 const Role = db.role;
@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // simple route
-*/
+/*
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to bezkoder application." });
 });
