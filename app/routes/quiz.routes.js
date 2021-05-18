@@ -54,6 +54,25 @@ module.exports = function(app) {
     }
     })
 
+    app.get('questions/byQuiz/:id', async (req, res) => {
+        try {
+        const id = req.params.id
+
+        const question = await Question.findOne({
+            where: {
+                'quizid': id
+            }
+        })        
+        if(!question){
+            return res.status(404).json({})
+        }else{
+            return res.status(200).json(question)
+        }
+    } catch (error) {
+        return res.status(500).json({"error":error})
+    }
+    })
+
     app.put('/questions/:id', async (req, res) => {
     try {
         const _id = req.params.id 
@@ -140,6 +159,25 @@ module.exports = function(app) {
         const answer = await Answer.findOne({
             where: {
                 'id': id
+            }
+        })        
+        if(!answer){
+            return res.status(404).json({})
+        }else{
+            return res.status(200).json(answer)
+        }
+    } catch (error) {
+        return res.status(500).json({"error":error})
+    }
+    })
+
+    app.get('/answers/byQuestion/:id', async (req, res) => {
+    try {
+        const id = req.params.id
+
+        const answer = await Answer.findOne({
+            where: {
+                'questionid': id
             }
         })        
         if(!answer){
